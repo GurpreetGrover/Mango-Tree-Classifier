@@ -306,7 +306,6 @@ def main():
     
     if uploaded_files:
         st.markdown(f"**{len(uploaded_files)} file(s) uploaded**")
-        st.write(f"{type(uploaded_files)}")
         # Process button
         process_images(uploaded_files)
         
@@ -322,9 +321,8 @@ def main():
         # Clear results button
         if st.button("🗑️ Clear All Results"):
             st.session_state.classification_results = []
-            uploaded_files
+            uploaded_files = []
             st.rerun()
-            st.write("This text will be regenerated on each script rerun.")
         # Display results
         for result in reversed(st.session_state.classification_results):  # Show newest first
             display_result_card(result)
