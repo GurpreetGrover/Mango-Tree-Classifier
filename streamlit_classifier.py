@@ -2,7 +2,6 @@ import streamlit as st
 import tensorflow as tf
 from tensorflow import keras
 import numpy as np
-# from PIL import Image
 from PIL import Image, ImageOps
 import requests
 import json
@@ -215,48 +214,48 @@ def classify_image_with_savedmodel(image, model_info):
         st.error(f"❌ Error during classification: {str(e)}")
         return None
 
-def display_predictions(predictions, image_name):
-    """
-    Display prediction results
-    JavaScript equivalent: Predictions display in result card
-    """
-    st.markdown(f"### 📊 Results for {image_name}")
+# def display_predictions(predictions, image_name):
+#     """
+#     Display prediction results
+#     JavaScript equivalent: Predictions display in result card
+#     """
+#     st.markdown(f"### 📊 Results for {image_name}")
     
-    # Sort predictions by priority (mango_tree first, then by probability)
-    def get_prediction_priority(pred):
-        if pred['className'].lower() == 'mango_tree':
-            return (1, -pred['probability'])
-        elif pred['className'].lower() == 'not_mango_tree':
-            return (2, -pred['probability'])
-        else:
-            return (3, -pred['probability'])
+#     # Sort predictions by priority (mango_tree first, then by probability)
+#     def get_prediction_priority(pred):
+#         if pred['className'].lower() == 'mango_tree':
+#             return (1, -pred['probability'])
+#         elif pred['className'].lower() == 'not_mango_tree':
+#             return (2, -pred['probability'])
+#         else:
+#             return (3, -pred['probability'])
     
-    sorted_predictions = sorted(predictions, key=get_prediction_priority)
+#     sorted_predictions = sorted(predictions, key=get_prediction_priority)
     
-    for i, pred in enumerate(sorted_predictions):
-        class_name = pred['className']
-        probability = pred['probability']
-        percentage = probability * 100
+#     for i, pred in enumerate(sorted_predictions):
+#         class_name = pred['className']
+#         probability = pred['probability']
+#         percentage = probability * 100
         
-        # Determine color based on class
-        if class_name.lower() == 'mango_tree':
-            color = '#4CAF50'  # Green
-        elif class_name.lower() == 'not_mango_tree':
-            color = '#f44336'  # Red  
-        else:
-            color = '#2196F3'  # Blue
+#         # Determine color based on class
+#         if class_name.lower() == 'mango_tree':
+#             color = '#4CAF50'  # Green
+#         elif class_name.lower() == 'not_mango_tree':
+#             color = '#f44336'  # Red  
+#         else:
+#             color = '#2196F3'  # Blue
         
-        # Display prediction with progress bar
-        col1, col2 = st.columns([3, 1])
+#         # Display prediction with progress bar
+#         col1, col2 = st.columns([3, 1])
         
-        with col1:
-            st.markdown(f"**{class_name}**")
-            st.progress(probability)
+#         with col1:
+#             st.markdown(f"**{class_name}**")
+#             st.progress(probability)
         
-        with col2:
-            st.markdown(f"**{percentage:.1f}%**")
+#         with col2:
+#             st.markdown(f"**{percentage:.1f}%**")
         
-        st.markdown("---")
+#         st.markdown("---")
 
 def main():
     """
