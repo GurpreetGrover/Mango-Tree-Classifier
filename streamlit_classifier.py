@@ -322,9 +322,8 @@ def main():
         # Clear results button
         if st.button("🗑️ Clear All Results"):
             st.session_state.classification_results = []
-            #st.rerun()
-            main()
-        
+            st.rerun()
+            st.write("This text will be regenerated on each script rerun.")
         # Display results
         for result in reversed(st.session_state.classification_results):  # Show newest first
             display_result_card(result)
