@@ -306,7 +306,7 @@ def main():
     
     if uploaded_files:
         st.markdown(f"**{len(uploaded_files)} file(s) uploaded**")
-        
+        st.write("type(uploaded_files)")
         # Process button
         process_images(uploaded_files)
         
