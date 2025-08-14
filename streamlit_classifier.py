@@ -322,6 +322,7 @@ def main():
         # Clear results button
         if st.button("🗑️ Clear All Results"):
             st.session_state.classification_results = []
+            uploaded_files
             st.rerun()
             st.write("This text will be regenerated on each script rerun.")
         # Display results
