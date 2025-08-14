@@ -73,6 +73,8 @@ if 'model' not in st.session_state:
     st.session_state.model = None
 if 'model_loaded' not in st.session_state:
     st.session_state.model_loaded = False
+if "uploader_key" not in st.session_state:
+    st.session_state.uploader_key = 0
 if 'classification_results' not in st.session_state:
     st.session_state.classification_results = []
 
@@ -301,7 +303,8 @@ def main():
         "Choose image files",
         type=['jpg', 'jpeg', 'png', 'bmp', 'gif'],
         accept_multiple_files=True,
-        help="Select one or more image files for classification"
+        help="Select one or more image files for classification",
+        key=f"uploader_{st.session_state.uploader_key}"
     )
     
     if uploaded_files:
@@ -321,7 +324,7 @@ def main():
         # Clear results button
         if st.button("🗑️ Clear All Results"):
             st.session_state.classification_results = []
-            uploaded_files = []
+            st.session_state.uploader_key += 1
             st.rerun()
         # Display results
         for result in reversed(st.session_state.classification_results):  # Show newest first
