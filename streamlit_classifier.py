@@ -322,7 +322,8 @@ def main():
         # Clear results button
         if st.button("🗑️ Clear All Results"):
             st.session_state.classification_results = []
-            st.rerun()
+            #st.rerun()
+            main()
         
         # Display results
         for result in reversed(st.session_state.classification_results):  # Show newest first
